@@ -8,7 +8,7 @@
 
         public string ApiSecret { get; set; }
 
-        public string Folder { get; set; }
+        public string FolderName { get; set; }
 
         public string Preset { get; set; } = "default";
 
@@ -20,7 +20,7 @@
 
         public ICloudinaryUploadWidgetTheme Theme { get; set; } = new DefaultTheme();
 
-        public bool AllowCropping { get; set; } = true;
+        public bool AllowCropping { get; set; } = false;
 
         public bool ShowSkipCropButton { get; set; } = true;
 

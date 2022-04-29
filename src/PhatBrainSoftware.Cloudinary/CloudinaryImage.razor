@@ -1,0 +1,6 @@
+﻿@if (string.IsNullOrWhiteSpace(this.CloudName) || string.IsNullOrWhiteSpace(this.PublicId))
+{
+    return;
+}
+
+<img src=@this.Url class=@this.Class/>

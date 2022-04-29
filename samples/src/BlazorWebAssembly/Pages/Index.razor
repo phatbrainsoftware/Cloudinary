@@ -1,14 +1,39 @@
 ﻿@page "/"
+@using System.Text.Json
 
 @inject IConfiguration Configuration
 
 <h1>Hello, world!</h1>
 
 <button class="btn btn-primary" type="submit" @onclick="@OnUploadClick">Upload</button>
+<CloudinaryImage CloudName=@this.CloudName
+                 PublicId=@this.PublicId
+                 Class="d-block" />
+<CloudinaryImage CloudName="demo"
+                 PublicId="lady"
+                 Class="d-block" />
+<CloudinaryImage CloudName="demo"
+                 PublicId="lady"
+                 Width=600
+                 Height=400
+                 Pad=true
+                 Class="d-block" />
+<CloudinaryImage CloudName="demo"
+                 PublicId="lady"
+                 Width=200
+                 Height=200
+                 Rounded
+                 Thumbnail
+                 BackgroundColor="white"
+                 Class="d-block" />
 
 @code {
     [Inject]
     CloudinaryUploadWidget CloudinaryUploadWidget { get; set; }
+
+    public string CloudName { get; set; }
+
+    public string PublicId { get; set; }
 
     protected async override Task OnInitializedAsync()
     {
@@ -16,11 +41,8 @@
             new CloudinaryUploadWidgetOptions
                 {
                     CloudName = this.Configuration["CLOUDINARY_CLOUD_NAME"],
-                    Folder = "test",
-                    Sources = new[] { "local", "url", "camera" },
-                    CroppingAspectRatio = 1,
-                    MaximumImageHeight = 200,
-                    MaximumImageWidth = 200
+                    FolderName = "test",
+                    Sources = new[] { "local", "url", "camera" }
                 };
 
         await this.CloudinaryUploadWidget.CreateAsync(cloudinaryUploadWidgetOptions);
@@ -29,6 +51,16 @@
     protected async Task OnUploadClick(
         MouseEventArgs mouseEventArgs)
     {
-        await this.CloudinaryUploadWidget.OpenWidgetAsync();
+        await this.CloudinaryUploadWidget.OpenWidgetAsync(this.FileUploaded);
+    }
+
+    protected void FileUploaded(CloudinaryFileUploaded fileUploaded)
+    {
+        Console.WriteLine(JsonSerializer.Serialize(fileUploaded, new JsonSerializerOptions { WriteIndented = true }));
+
+        this.PublicId = fileUploaded.File.PublicId;
+        this.CloudName = this.Configuration["CLOUDINARY_CLOUD_NAME"];
+
+        this.StateHasChanged();
     }
 }
