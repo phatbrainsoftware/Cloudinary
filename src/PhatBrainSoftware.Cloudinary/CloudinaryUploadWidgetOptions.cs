@@ -1,4 +1,6 @@
-﻿namespace PhatBrainSoftware.Cloudinary
+﻿using System;
+
+namespace PhatBrainSoftware.Cloudinary
 {
     public class CloudinaryUploadWidgetOptions
     {
@@ -29,6 +31,13 @@
         public int? MaximumImageHeight { get; set; } = null;
 
         public int? MaximumImageWidth { get; set; } = null;
+
+        public CloudinaryUploadWidgetOptions()
+        {
+            this.CloudName = Environment.GetEnvironmentVariable("CLOUDINARY_CLOUD_NAME");
+            this.ApiKey = Environment.GetEnvironmentVariable("CLOUDINARY_API_KEY");
+            this.ApiSecret = Environment.GetEnvironmentVariable("CLOUDINARY_API_SECRET");
+        }
     }
 }
 

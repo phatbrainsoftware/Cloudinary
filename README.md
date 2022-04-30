@@ -18,6 +18,12 @@ dotnet add package PhatBrainSoftware.Cloudinary
 
 If you're using Visual Studio you can also install via the built in NuGet package manager.
 
+Add the following to `index.html`:
+
+```html
+    <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+```
+
 Add the following to `_Imports.razor`:
 
 ```cs
