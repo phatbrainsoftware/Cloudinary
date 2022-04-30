@@ -12,6 +12,7 @@ src/Blazored.Modal/wwwroot/*.map
 *.user
 *.userosscache
 *.sln.docstates
+*.Development.json
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
