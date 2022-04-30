@@ -20,6 +20,7 @@ export function setupCloudinaryUploadWidget(options, instance, callback) {
         tags: options.tags,     
         clientAllowedFormats: options.allowedFormats,
         resourceType: 'image',
+        buttonClass: 'btn btn-primary',
         styles: {
             palette: {
                 window: options.theme.windowColor,
