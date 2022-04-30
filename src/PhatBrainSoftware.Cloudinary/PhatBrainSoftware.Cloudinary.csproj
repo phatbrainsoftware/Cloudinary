@@ -19,6 +19,7 @@
 
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <Version>1.0.2</Version>
 	  
   </PropertyGroup>
 
