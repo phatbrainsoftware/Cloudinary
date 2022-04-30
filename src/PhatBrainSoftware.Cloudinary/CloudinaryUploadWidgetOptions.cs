@@ -32,6 +32,12 @@ namespace PhatBrainSoftware.Cloudinary
 
         public int? MaximumImageWidth { get; set; } = null;
 
+        public int? MinimumImageHeight { get; set; } = null;
+
+        public int? MinimumImageWidth { get; set; } = null;
+
+        public bool ValidateCroppingDimensions { get; set; } = true;
+
         public CloudinaryUploadWidgetOptions()
         {
             this.CloudName = Environment.GetEnvironmentVariable("CLOUDINARY_CLOUD_NAME");

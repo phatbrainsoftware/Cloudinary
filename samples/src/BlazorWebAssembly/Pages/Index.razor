@@ -11,9 +11,6 @@
                  Class="d-block" />
 <CloudinaryImage CloudName="demo"
                  PublicId="lady"
-                 Class="d-block" />
-<CloudinaryImage CloudName="demo"
-                 PublicId="lady"
                  Width=600
                  Height=400
                  Pad=true
@@ -25,6 +22,9 @@
                  Rounded
                  Thumbnail
                  BackgroundColor="white"
+                 Class="d-block" />
+<CloudinaryImage CloudName="demo"
+                 PublicId="lady"
                  Class="d-block" />
 
 @code {
@@ -42,7 +42,13 @@
                 {
                     CloudName = this.Configuration["CLOUDINARY_CLOUD_NAME"],
                     FolderName = "test/1",
-                    Sources = new[] { "local", "url", "camera" }
+                    Sources = new[] { "local", "url", "camera" },
+                    Preset = "z9sgvcfc",
+                    MinimumImageHeight = 200,
+                    MinimumImageWidth = 200,
+                    AllowCropping = true,
+                    CroppingAspectRatio = 1,
+                    ValidateCroppingDimensions = true
                 };
 
         await this.CloudinaryUploadWidget.CreateAsync(cloudinaryUploadWidgetOptions);

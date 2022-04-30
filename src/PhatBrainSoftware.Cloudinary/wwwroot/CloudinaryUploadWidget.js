@@ -14,13 +14,14 @@ export function setupCloudinaryUploadWidget(options, instance, callback) {
         croppingAspectRatio: options.croppingAspectRatio,
         maxImageWidth: options.maximumImageHeight,
         maxImageHeight: options.maximumImageWidth,
+        minImageWidth: options.minImageHeight,
+        minImageHeight: options.minImageWidth,
+        croppingValidateDimensions: options.validateCroppingDimensions,
         showSkipCropButton: options.showSkipCropButton,
         multiple: false,
         folder: options.folderName,
         tags: options.tags,     
         clientAllowedFormats: options.allowedFormats,
-        resourceType: 'image',
-        buttonClass: 'btn btn-primary',
         styles: {
             palette: {
                 window: options.theme.windowColor,
