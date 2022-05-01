@@ -6,6 +6,18 @@ export function setCloudinaryCloudName(cloudName) {
 var widget;
 
 export function setupCloudinaryUploadWidget(options, instance, callback) {
+    console.log(widget);
+
+    if (widget != undefined) {
+        widget.destroy().then(() => {
+            createCloudinaryUploadWidget(options, instance, callback);
+        });
+    } else {
+        createCloudinaryUploadWidget(options, instance, callback);
+    }
+}
+
+function createCloudinaryUploadWidget(options, instance, callback) {
     widget = cloudinary.createUploadWidget({
         uploadPreset: options.preset,
         sources: options.sources,
@@ -20,7 +32,7 @@ export function setupCloudinaryUploadWidget(options, instance, callback) {
         showSkipCropButton: options.showSkipCropButton,
         multiple: false,
         folder: options.folderName,
-        tags: options.tags,     
+        tags: options.tags,
         clientAllowedFormats: options.allowedFormats,
         styles: {
             palette: {

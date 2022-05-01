@@ -12,8 +12,6 @@ namespace PhatBrainSoftware.Cloudinary
 
         public string Id { get; private set; }
 
-        public CloudinaryUploadWidgetOptions Options { get; set; }
-
         protected IJSObjectReference Module { get; set; }
 
         public delegate void UploadCompletedCallBack(CloudinaryFileUploaded result);
@@ -29,13 +27,11 @@ namespace PhatBrainSoftware.Cloudinary
         public async Task CreateAsync(
             CloudinaryUploadWidgetOptions options)
         {
-            this.Options = options;
-
             this.Module = await this.JSRuntime.InvokeAsync<IJSObjectReference>("import", $"./_content/{typeof(CloudinaryUploadWidget).Namespace}/CloudinaryUploadWidget.js");
 
-            await this.Module.InvokeVoidAsync("setCloudinaryCloudName", this.Options.CloudName);
+            await this.Module.InvokeVoidAsync("setCloudinaryCloudName", options.CloudName);
 
-            await this.Module.InvokeVoidAsync("setupCloudinaryUploadWidget", this.Options, DotNetObjectReference.Create(this), "UploadComplete");
+            await this.Module.InvokeVoidAsync("setupCloudinaryUploadWidget", options, DotNetObjectReference.Create(this), "UploadComplete");
         }
 
         public async Task OpenWidgetAsync()
@@ -55,8 +51,6 @@ namespace PhatBrainSoftware.Cloudinary
         public void UploadComplete(
             string response)
         {
-            Console.WriteLine(response);
-
             var cloudinaryFileUploaded =
                 JsonSerializer.Deserialize<CloudinaryFileUploaded>(response);
 
